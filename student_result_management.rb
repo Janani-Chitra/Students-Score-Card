@@ -64,6 +64,7 @@ class Student
   def initialize id, sub1, sub2, sub3, sub4
     @id, @sub1, @sub2, @sub3, @sub4 = id, sub1, sub2, sub3, sub4
     @total = sub1 + sub2 + sub3 + sub4 #calculate grand_total
+    raise ArgumentError if @total > 400 #raise if invalid mark values are provided
     @grade = evaluate_grade @total
   end
 
