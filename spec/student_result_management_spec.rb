@@ -1,17 +1,5 @@
 require_relative '../student_result_management'
 
-# describe StudentResultManagement do 
-#   context “When testing the StudentResultManagement class” do 
-    
-#     it "should say 'Hello World' when we call the say_hello method" do 
-#       hw = HelloWorld.new 
-#       message = hw.say_hello 
-#       expect(message).to eq "Hello World!"
-#     end
-    
-#   end
-# end
-
 describe Student do 
   context "When testing the Student class with invalid arguments" do 
     it "should throw an error if wrong number of arguments are passed" do 
