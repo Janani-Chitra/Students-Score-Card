@@ -3,11 +3,11 @@
 > - Used RSpec - a unit test framework
 #### Associations
 - StudentResultManagement has many Students
-#### Use the below ruby command to generate score card
+#### Use the below ruby command to generate score card inside the project folder
 ```
 ruby .\main.rb
 ```
-#### Use the below ruby command to run testcases
+#### Use the below ruby command to run testcases inside the project folder
 ```
-rspec spec .\spec\student_score_extractor_spec.rb
+rspec spec
 ```
