@@ -1,35 +1,23 @@
-require_relative '../student_result_management'
+require_relative '../models/student_result_management'
+require_relative '../models/student'
 
-describe Student do 
-  context "When testing the Student class with invalid arguments" do 
-    it "should throw an error if wrong number of arguments are passed" do 
-      expect { Student.new 1, 100, 100 }.to raise_error(ArgumentError)
-    end
-
-    it "should throw an error if invalid arguments are passed" do 
-      expect { Student.new 1, 500, 200, 100, 100 }.to raise_error(ArgumentError)
+describe StudentResultManagement do
+  context "When testing the StudentResultManagement class with invalid arguments" do
+    it "should throw an error if we call the score_card_generator method with duplicate student entry" do
+      score_details = ["1,S1-88,S2-53,S3-69,S4-64","2,S1-92,S2-86,S3-93,S4-77","01,S1-92,S2-86,S3-93,S4-77"]
+      srm = StudentResultManagement.new
+      expect { srm.score_card_generator score_details }.to raise_error.with_message(/Found duplicate student entry for student with id/)
     end
   end
-  
-  context "When testing the Student class with valid arguments" do 
-    it "should calcualte total for the subject_mark arguments passed" do 
-      marks = [100,100,100,99]
-      st = Student.new 1, *marks
-      expect(st.total).to eq marks.sum
+
+  context "When testing the StudentResultManagement class with valid arguments" do
+    it "should create students if we call the score_card_generator method with valid student entry" do
+      score_details = ["1,S1-88,S2-53,S3-69,S4-64","2,S1-92,S2-86,S3-93,S4-77"]
+      srm = StudentResultManagement.new
+      srm.score_card_generator score_details
+      expect(srm.student_ids.include?(1)).to eq true
     end
 
-    it "should return the garde when we call the evaluate_grade method even with the edge values" do 
-      marks = [100,100,100,39]
-      st = Student.new 1, *marks
-      grade = st.evaluate_grade st.total
-      if st.total >= 340
-        expect(grade).to eq "A"
-      elsif st.total >= 300
-        expect(grade).to eq "B"
-      else
-        expect(grade).to eq "C"
-      end
-    end
   end
   
 end
